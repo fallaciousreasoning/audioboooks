@@ -7,7 +7,7 @@ export default async () => {
     input.hidden = true;
     input.setAttribute('webkitdirectory', '');
 
-    const { resolve, promise } = resolvable();
+    const { resolve, promise } = resolvable<FileList>();
     input.addEventListener('change', (e) => {
         resolve(e.target['files']);
     });

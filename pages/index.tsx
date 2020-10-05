@@ -4,6 +4,7 @@ import AppBar from '../components/AppBar'
 import React from 'react'
 import BookIcon from '../components/BookIcon'
 import pickFolder from '../utils/pickFolder'
+import AddBook from '../components/AddBook'
 
 export default function Home() {
   const books = [
@@ -19,7 +20,7 @@ export default function Home() {
     "Tenth",
     "Eleventh"
   ];
-  
+
   return <div>
     <Head>
       <title>Home</title>
@@ -32,5 +33,6 @@ export default function Home() {
         <BookIcon title={b} cover={`https://picsum.photos/seed/${b}/200`} progress={b.length / 10}/>
       </Box>)}
     </Flex>
+    <AddBook/>
   </div>
 }
