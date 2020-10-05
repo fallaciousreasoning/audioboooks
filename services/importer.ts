@@ -8,6 +8,7 @@ import hash from "../utils/hash";
 import duration from "../utils/duration";
 import { Book } from "../model/Book";
 import { title } from "process";
+import { addBook } from "./library";
 global['localforage'] = localforage;
 
 const getTags = async (file: File) => {
@@ -124,6 +125,7 @@ export const importToIndexedDB = async (files: FileList): Promise<Book> => {
     };
 
     console.log(book);
+    await addBook(book);
 
     return book;
 }
