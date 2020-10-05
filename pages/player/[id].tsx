@@ -36,7 +36,7 @@ const Player = () => {
                     <IconButton isRound aria-label="Playback Speed" icon="repeat-clock" />
                 </Stack>
             </AppBar>
-            <Box flexGrow={1}>
+            <Box flexGrow={1} flexShrink={1} overflow="hidden">
                 <Image src={coverUrl}></Image>
             </Box>
             <Box shadow="md">
