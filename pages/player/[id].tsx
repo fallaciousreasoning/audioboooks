@@ -5,10 +5,17 @@ import BookProgress from "../../components/BookProgress"
 import { hours, minutes } from "../../utils/time";
 import AppBar from "../../components/AppBar";
 import { useRouter } from 'next/router'
+import useBook from "../../hooks/useBook";
+import { getTotalDuration } from "../../services/book";
 
 const Player = () => {
     const router = useRouter();
-    const id = router.query.id;
+    const id = router.query.id as string;
+    const book = useBook(id);
+    const totalDuration = getTotalDuration(book);
+
+    // TODO: Get progress from somewhere.
+    const currentPosition = totalDuration * 0.12;
     
     return <div>
         <Head>
@@ -38,7 +45,7 @@ const Player = () => {
                     <IconButton variant="link" aria-label="Next Track" icon="chevron-right" />
                 </Flex>
                 <Box padding={1}>
-                    <BookProgress currentTime={hours(4) - minutes(3)} totalDuration={hours(10)} />
+                    <BookProgress currentTime={currentPosition} totalDuration={totalDuration} />
                 </Box>
                 <Flex alignItems="center" justifyContent="center" padding={3}>
                     <IconButton isRound aria-label="back" icon="arrow-left" />
