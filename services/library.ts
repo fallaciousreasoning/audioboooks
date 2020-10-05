@@ -2,12 +2,12 @@ import { Book } from "../model/Book";
 import localforage from 'localforage';
 
 export interface Library {
-    books: Book[];
+    books: { [id: string]: Book };
 }
 
 const KEY = "LIBRARY";
 const defaultLibrary: Library = {
-    books: []
+    books: {}
 }
 
 export const getLibrary = async (): Promise<Library> => {
@@ -25,6 +25,6 @@ const setLibrary = async (library: Library) => {
 
 export const addBook = async (book: Book) => {
     const library = await getLibrary();
-    library.books.push(book);
+    library.books[book.id] = book;
     await setLibrary(library);
 }

@@ -20,8 +20,8 @@ export default function Home() {
       <Text fontSize="xl">Audio Books</Text>
     </AppBar>
     <Flex style={{ gap: '10px'}} padding={1} flexWrap="wrap" justifyContent="space-evenly">
-      {library && library.books.map(book => <Box key={book.title} shadow="md" marginTop={1}>
-        <BookIcon book={book} progress={book.title.length / 50}/>
+      {library && Object.keys(library.books).map(bookId => <Box key={bookId} shadow="md" marginTop={1}>
+        <BookIcon book={library.books[bookId]} progress={library.books[bookId].title.length / 50}/>
       </Box>)}
     </Flex>
     <AddBook/>

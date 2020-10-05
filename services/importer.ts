@@ -113,6 +113,8 @@ export const importToIndexedDB = async (files: FileList): Promise<Book> => {
         .sort(trackOrdering);
 
     const book: Book = {
+        id: tracks.map(t => t.id).join('|'),
+        
         chapters: [],
         coverId: metaData.coverId,
         source: {
