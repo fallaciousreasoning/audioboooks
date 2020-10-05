@@ -11,7 +11,9 @@
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
+    "@types/jsmediatags": "^3.9.1",
     "emotion-theming": "^10.0.27",
+    "jsmediatags": "^3.9.3",
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
