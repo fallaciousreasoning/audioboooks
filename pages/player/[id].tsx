@@ -1,12 +1,13 @@
 import Head from "next/head"
 import { Box, Stack, Image, Button, Icon, IconButton, Link, Grid, Flex, Select } from "@chakra-ui/core"
 import React from "react"
-import BookProgress from "../components/BookProgress"
-import { hours, minutes } from "../utils/time";
-import AppBar from "../components/AppBar";
+import BookProgress from "../../components/BookProgress"
+import { hours, minutes } from "../../utils/time";
+import AppBar from "../../components/AppBar";
 
 
-const Player = () => {
+const Player = (props: {id: string}) => {
+    console.log(props);
     return <div>
         <Head>
             <title>Now Playing</title>

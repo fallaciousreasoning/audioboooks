@@ -26,7 +26,7 @@ const BookIcon = (props: Props) => {
             URL.revokeObjectURL(url);
         }
     }, []);
-    return <Link href="/player">
+    return <Link href={`/player/${props.book.id}`}>
         <Flex height="10em" minWidth="10em" maxWidth="10em" direction="column">
             <NoTextWrap fontSize="xl">{props.book.title}</NoTextWrap>
             <Image src={coverUrl} flexShrink={1} flexGrow={1} minHeight={0} minWidth={0} />
