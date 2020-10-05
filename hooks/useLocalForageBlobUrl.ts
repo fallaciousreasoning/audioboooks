@@ -6,6 +6,9 @@ export default (key: string) => {
     const [url, setUrl] = useState(undefined);
 
     useEffect(() => {
+        if (!key)
+            return;
+            
         let cancelled = false;
         localforage.getItem(key).then(blob => {
             console.log(blob);

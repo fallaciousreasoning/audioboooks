@@ -8,12 +8,14 @@ import { useRouter } from 'next/router'
 import useBook from "../../hooks/useBook";
 import { getTotalDuration } from "../../services/book";
 import TrackPicker from "../../components/TrackPicker";
+import useLocalForageBlobUrl from "../../hooks/useLocalForageBlobUrl";
 
 const Player = () => {
     const router = useRouter();
     const id = router.query.id as string;
     const book = useBook(id);
     const totalDuration = getTotalDuration(book);
+    const coverUrl = useLocalForageBlobUrl(book && book.coverId);
 
     // TODO: Get progress from somewhere.
     const currentPosition = totalDuration * 0.12;
@@ -33,7 +35,7 @@ const Player = () => {
                 </Stack>
             </AppBar>
             <Box flexGrow={1}>
-                <Image src="album-art"></Image>
+                <Image src={coverUrl}></Image>
             </Box>
             <Box shadow="md">
                 {book && <TrackPicker book={book} />}
