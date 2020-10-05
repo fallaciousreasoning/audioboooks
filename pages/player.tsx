@@ -20,7 +20,7 @@ const Player = () => {
             <Box flexGrow={1}>
                 <Image src="album-art"></Image>
             </Box>
-            <div>
+            <Box shadow="md">
                 <Flex direction="row" padding={1}>
                     <IconButton variant="link" aria-label="Previous Track" icon="chevron-left" />
                     <Select variant="flushed">
@@ -30,8 +30,15 @@ const Player = () => {
                     </Select>
                     <IconButton variant="link" aria-label="Next Track" icon="chevron-right" />
                 </Flex>
-                <BookProgress currentTime={1000*60*60*4} totalDuration={1000*60*60*10}/>
-            </div>
+                <Box padding={1}>
+                    <BookProgress currentTime={1000 * 60 * 60 * 4} totalDuration={1000 * 60 * 60 * 10} />
+                </Box>
+                <Flex alignItems="center" justifyContent="center" padding={3}>
+                    <IconButton isRound aria-label="back" icon="arrow-left" />
+                    <IconButton variantColor="pink" isRound aria-label="play/pause" icon="chevron-right" size="lg"/>
+                    <IconButton isRound aria-label="forward" icon="arrow-right" />
+                </Flex>
+            </Box>
         </Flex>
     </div>
 };
