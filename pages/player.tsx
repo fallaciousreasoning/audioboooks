@@ -2,6 +2,7 @@ import Head from "next/head"
 import { Box, Stack, Image, Button, Icon, IconButton, Link, Grid, Flex, Select } from "@chakra-ui/core"
 import React from "react"
 import BookProgress from "../components/BookProgress"
+import { hours, minutes } from "../utils/time";
 
 
 const Player = () => {
@@ -31,7 +32,7 @@ const Player = () => {
                     <IconButton variant="link" aria-label="Next Track" icon="chevron-right" />
                 </Flex>
                 <Box padding={1}>
-                    <BookProgress currentTime={1000 * 60 * 60 * 4} totalDuration={1000 * 60 * 60 * 10} />
+                    <BookProgress currentTime={hours(4) - minutes(3)} totalDuration={hours(10)} />
                 </Box>
                 <Flex alignItems="center" justifyContent="center" padding={3}>
                     <IconButton isRound aria-label="back" icon="arrow-left" />
