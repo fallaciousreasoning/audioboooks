@@ -1,6 +1,7 @@
 import Head from "next/head"
 import { Box, Stack, Image, Button, Icon, IconButton, Link, Grid, Flex, Select } from "@chakra-ui/core"
 import React from "react"
+import BookProgress from "../components/BookProgress"
 
 
 const Player = () => {
@@ -29,6 +30,7 @@ const Player = () => {
                     </Select>
                     <IconButton variant="link" aria-label="Next Track" icon="chevron-right" />
                 </Flex>
+                <BookProgress currentTime={1000*60*60*4} totalDuration={1000*60*60*10}/>
             </div>
         </Flex>
     </div>
