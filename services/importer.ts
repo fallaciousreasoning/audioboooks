@@ -5,6 +5,7 @@ import { TagType } from "jsmediatags/types";
 import { v4 as uuid } from 'uuid'
 import localforage from 'localforage';
 import hash from "../utils/hash";
+import duration from "../utils/duration";
 global['localforage'] = localforage;
 
 const getTags = async (file: File) => {
@@ -26,7 +27,7 @@ const toTrack = async (file: File): Promise<Track> => {
     
     const track = {
         id: fileHash,
-        duration: 0,
+        duration: await duration(file),
         title: title,
         trackNumber: parseInt(trackNumber),
         type: file.type,
@@ -38,15 +39,17 @@ const toTrack = async (file: File): Promise<Track> => {
     return track;
 }
 
-export const generateFallbackOrdering = async (files: File[]) => {
-    return files.sort((f1, f2) => f1.name.localeCompare(f2.name));
+export const trackOrdering = (track1: Track, track2: Track) => {
+    if (track1.trackNumber && track2.trackNumber)
+        return track1.trackNumber - track2.trackNumber;
+
+    return track1.title.localeCompare(track2.title);
 }
 
 export const importToIndexedDB = async (files: FileList) => {
     const filtered = Array.from(files).filter(f => supportedTrackTypes.some(suffix => f.name.endsWith(suffix)));
-    console.log("Filtered files to", filtered);
 
-    for (const file of filtered) {
-        const track = await toTrack(file);
-    }
+    const tracks = (await Promise.all(filtered.map(t => toTrack(t))))
+        .sort(trackOrdering);
+    console.log(tracks);
 }
