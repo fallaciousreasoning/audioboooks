@@ -20,7 +20,7 @@ const Player = () => {
 
     // TODO: Get progress from somewhere.
     const [currentTrack, setCurrentTrack] = useState(0);
-    const currentPosition = totalDuration * 0.12;
+    const currentPosition = book ? book.tracks.slice(0, currentTrack).reduce((prev, next) => prev + next.duration, 0) : 0;
     
     return <div>
         <Head>
