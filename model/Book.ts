@@ -3,7 +3,6 @@ import { Track } from "./Track";
 
 interface IndexedDBSource {
     type: 'indexeddb';
-    name: string;
     reimportable: false;
 }
 
@@ -11,6 +10,9 @@ type Source = IndexedDBSource;
 
 export interface Book {
     title: string;
+    author?: string;
+    coverId?: string;
+
     chapters: Chapter[];
     tracks: Track[];
 

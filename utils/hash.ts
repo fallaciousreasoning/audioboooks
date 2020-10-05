@@ -2,7 +2,7 @@ import { resolvable } from './promise';
 
 let bmf;
 
-export default async (file: File) => {
+export default async (file: Blob) => {
     if (!bmf) {
         const { default: BMF } = await import('browser-md5-file');
         bmf = new BMF();
