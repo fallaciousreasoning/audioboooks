@@ -14,6 +14,7 @@
     "@types/jsmediatags": "^3.9.1",
     "@types/localforage": "0.0.34",
     "@types/uuid": "^8.3.0",
+    "browser-md5-file": "^1.1.1",
     "emotion-theming": "^10.0.27",
     "jsmediatags": "^3.9.3",
     "localforage": "^1.9.0",
