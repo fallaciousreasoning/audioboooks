@@ -111,7 +111,7 @@ export const importToIndexedDB = async (files: FileList): Promise<Book> => {
     const tracks = (await Promise.all(filteredFiles.map(t => toTrack(t))))
         .sort(trackOrdering);
 
-    return {
+    const book: Book = {
         chapters: [],
         coverId: metaData.coverId,
         source: {
@@ -121,5 +121,9 @@ export const importToIndexedDB = async (files: FileList): Promise<Book> => {
         title: metaData.title,
         author: metaData.author,
         tracks: tracks
-    }
+    };
+
+    console.log(book);
+
+    return book;
 }
