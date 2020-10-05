@@ -1,7 +1,7 @@
 import { Book } from "../model/Book";
 import localforage from 'localforage';
 
-interface Library {
+export interface Library {
     books: Book[];
 }
 
