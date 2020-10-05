@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { Box, Stack, Image, Button, Icon, IconButton, Link, Grid, Flex, Select } from "@chakra-ui/core"
-import React from "react"
+import React, { useState } from "react"
 import BookProgress from "../../components/BookProgress"
 import { hours, minutes } from "../../utils/time";
 import AppBar from "../../components/AppBar";
@@ -9,6 +9,7 @@ import useBook from "../../hooks/useBook";
 import { getTotalDuration } from "../../services/book";
 import TrackPicker from "../../components/TrackPicker";
 import useLocalForageBlobUrl from "../../hooks/useLocalForageBlobUrl";
+import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 
 const Player = () => {
     const router = useRouter();
@@ -18,6 +19,7 @@ const Player = () => {
     const coverUrl = useLocalForageBlobUrl(book && book.coverId);
 
     // TODO: Get progress from somewhere.
+    const [currentTrack, setCurrentTrack] = useState(0);
     const currentPosition = totalDuration * 0.12;
     
     return <div>
@@ -38,7 +40,7 @@ const Player = () => {
                 <Image src={coverUrl}></Image>
             </Box>
             <Box shadow="md">
-                {book && <TrackPicker book={book} />}
+                {book && <TrackPicker book={book} currentTrack={currentTrack} onTrackChange={setCurrentTrack} />}
                 <Box padding={1}>
                     <BookProgress currentTime={currentPosition} totalDuration={totalDuration} />
                 </Box>
