@@ -1,5 +1,6 @@
 import Head from "next/head"
-import { Box, Stack, Image } from "@chakra-ui/core"
+import { Box, Stack, Image, Button, Icon, IconButton, Link } from "@chakra-ui/core"
+import React from "react"
 
 export default () => {
     return <div>
@@ -8,7 +9,11 @@ export default () => {
         </Head>
         <Stack shadow="md">
             <div className="controls-row">
-                Sleep Timer | Playback Speed
+                <Link href="javascript:history.back()">
+                    <Icon name="arrow-back" />
+                </Link>
+                <IconButton isRound aria-label="Sleep Timer" icon="time" />
+                <IconButton isRound aria-label="Playback Speed" icon="repeat-clock" />
             </div>
             <Image src="album-art"></Image>
             <div className="playback">
