@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Book } from "../model/Book";
 import localforage from 'localforage';
 import NoTextWrap from "./NoTextWrap";
+import useLocalForageBlobUrl from "../hooks/useLocalForageBlobUrl";
 
 interface Props {
     book: Book;
@@ -11,21 +12,7 @@ interface Props {
 }
 
 const BookIcon = (props: Props) => {
-    const [coverUrl, setCoverUrl] = useState<string>(undefined);
-    useEffect(() => {
-        if (!props.book.coverId)
-            return;
-
-        let url: string;
-        localforage.getItem(props.book.coverId)
-            .then(blob => {
-                url = URL.createObjectURL(blob);
-                setCoverUrl(url);
-            });
-        return () => {
-            URL.revokeObjectURL(url);
-        }
-    }, []);
+    const coverUrl = useLocalForageBlobUrl(props.book.coverId);
     return <Link href={`/player/${props.book.id}`}>
         <Flex height="10em" minWidth="10em" maxWidth="10em" direction="column">
             <NoTextWrap fontSize="xl">{props.book.title}</NoTextWrap>
