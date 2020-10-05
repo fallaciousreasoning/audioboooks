@@ -9,7 +9,7 @@ interface Props {
 
 const BookProgress = (props: Props) => <Flex direction="row" alignItems="center">
     <span>{humanTime(props.currentTime * 1000)}</span>
-    <Progress marginLeft={1} marginRight={1} value={props.currentTime / props.totalDuration * 100} flex={1}/>
+    <Progress isAnimated={false} marginLeft={1} marginRight={1} value={props.currentTime / props.totalDuration * 100} flex={1}/>
     <span>{humanTime(props.totalDuration * 1000)}</span>
 </Flex>;
 
