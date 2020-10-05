@@ -2,7 +2,7 @@ import Head from "next/head"
 import { Box, Stack, Image, Button, Icon, IconButton, Link } from "@chakra-ui/core"
 import React from "react"
 
-export default () => {
+const Player = () => {
     return <div>
         <Head>
             <title>Now Playing</title>
@@ -21,4 +21,6 @@ export default () => {
             </div>
         </Stack>
     </div>
-}
+};
+
+export default Player;
