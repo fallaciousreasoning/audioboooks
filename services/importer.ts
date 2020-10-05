@@ -4,6 +4,7 @@ import { resolvable } from "../utils/promise";
 import { TagType } from "jsmediatags/types";
 import { v4 as uuid } from 'uuid'
 import localforage from 'localforage';
+import hash from "../utils/hash";
 global['localforage'] = localforage;
 
 const getTags = async (file: File) => {
@@ -21,10 +22,10 @@ const toTrack = async (file: File): Promise<Track> => {
     const tagInfo = await getTags(file);
     const title = tagInfo.tags.title?.valueOf() ?? file.name;
     const trackNumber = tagInfo.tags.track?.valueOf();
-
+    const fileHash = await hash(file);
     
     const track = {
-        id: uuid(),
+        id: fileHash,
         duration: 0,
         title: title,
         trackNumber: parseInt(trackNumber),
