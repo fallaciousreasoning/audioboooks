@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import { Box, Flex, Grid, Stack, Text } from '@chakra-ui/core'
+import { Box, Button, Flex, Grid, Stack, Text } from '@chakra-ui/core'
 import AppBar from '../components/AppBar'
 import React from 'react'
 import BookIcon from '../components/BookIcon'
+import pickFolder from '../utils/pickFolder'
 
 export default function Home() {
   const books = [
@@ -17,9 +18,8 @@ export default function Home() {
     "Ninth",
     "Tenth",
     "Eleventh"
-  ]
-
-  const extendedProps = { gap: '10px' };
+  ];
+  
   return <div>
     <Head>
       <title>Home</title>
