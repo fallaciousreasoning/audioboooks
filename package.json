@@ -12,11 +12,15 @@
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
     "@types/jsmediatags": "^3.9.1",
+    "@types/localforage": "0.0.34",
+    "@types/uuid": "^8.3.0",
     "emotion-theming": "^10.0.27",
     "jsmediatags": "^3.9.3",
+    "localforage": "^1.9.0",
     "next": "9.5.3",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@types/node": "^14.6.4",

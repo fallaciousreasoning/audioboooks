@@ -10,6 +10,8 @@ export const supportedTrackTypes = [
 
 export interface Track {
     id: string;
+    trackNumber?: number;
     title: string;
     duration: number;
+    type: string;
 }
