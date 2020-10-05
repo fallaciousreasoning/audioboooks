@@ -8,10 +8,9 @@ export default (key: string) => {
     useEffect(() => {
         if (!key)
             return;
-            
+
         let cancelled = false;
         localforage.getItem(key).then(blob => {
-            console.log(blob);
             if (cancelled) return;
 
             if (blob)
