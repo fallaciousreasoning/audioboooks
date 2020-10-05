@@ -1,0 +1,20 @@
+.root {
+    height: 100vh;
+}
+
+.controls-row {
+    flex-grow: 0;
+    padding: 0.5em;
+}
+
+.controls-row:not(:last-child) > * {
+    margin-right: 0.5em;
+}
+
+.cover {
+    flex-grow: 1;
+}
+
+.playback {
+    flex-grow: 0;
+}
