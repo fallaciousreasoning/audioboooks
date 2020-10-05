@@ -7,6 +7,7 @@ import AppBar from "../../components/AppBar";
 import { useRouter } from 'next/router'
 import useBook from "../../hooks/useBook";
 import { getTotalDuration } from "../../services/book";
+import TrackPicker from "../../components/TrackPicker";
 
 const Player = () => {
     const router = useRouter();
@@ -35,15 +36,7 @@ const Player = () => {
                 <Image src="album-art"></Image>
             </Box>
             <Box shadow="md">
-                <Flex direction="row" padding={1}>
-                    <IconButton variant="link" aria-label="Previous Track" icon="chevron-left" />
-                    <Select variant="flushed">
-                        <option value="0">Track 1</option>
-                        <option value="1">Track 2</option>
-                        <option value="2">Track 3</option>
-                    </Select>
-                    <IconButton variant="link" aria-label="Next Track" icon="chevron-right" />
-                </Flex>
+                {book && <TrackPicker book={book} />}
                 <Box padding={1}>
                     <BookProgress currentTime={currentPosition} totalDuration={totalDuration} />
                 </Box>
