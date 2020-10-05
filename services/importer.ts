@@ -1,14 +1,12 @@
-import { supportedTrackTypes, Track } from "../model/Track";
 import { read as readMediaTags } from 'jsmediatags';
-import { resolvable } from "../utils/promise";
 import { PictureType, TagType } from "jsmediatags/types";
-import { v4 as uuid } from 'uuid'
 import localforage from 'localforage';
-import hash from "../utils/hash";
-import duration from "../utils/duration";
 import { Book } from "../model/Book";
-import { title } from "process";
-import { addBook } from "./library";
+import { supportedTrackTypes, Track } from "../model/Track";
+import duration from "../utils/duration";
+import hash from "../utils/hash";
+import { resolvable } from "../utils/promise";
+import { addBook } from './store';
 global['localforage'] = localforage;
 
 const getTags = async (file: File) => {
@@ -114,7 +112,7 @@ export const importToIndexedDB = async (files: FileList): Promise<Book> => {
 
     const book: Book = {
         id: tracks.map(t => t.id).join('|'),
-        
+
         chapters: [],
         coverId: metaData.coverId,
         source: {
@@ -126,7 +124,6 @@ export const importToIndexedDB = async (files: FileList): Promise<Book> => {
         tracks: tracks
     };
 
-    console.log(book);
     await addBook(book);
 
     return book;

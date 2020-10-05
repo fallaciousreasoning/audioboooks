@@ -1,20 +1,18 @@
-import Head from "next/head"
-import { Box, Stack, Image, Button, Icon, IconButton, Link, Grid, Flex, Select } from "@chakra-ui/core"
-import React, { useState } from "react"
-import BookProgress from "../../components/BookProgress"
-import { hours, minutes } from "../../utils/time";
+import { Box, Flex, Icon, IconButton, Image, Link, Stack } from "@chakra-ui/core";
+import Head from "next/head";
+import { useRouter } from 'next/router';
+import React, { useState } from "react";
+import { collect, Store } from "react-recollect";
 import AppBar from "../../components/AppBar";
-import { useRouter } from 'next/router'
-import useBook from "../../hooks/useBook";
-import { getTotalDuration } from "../../services/book";
+import BookProgress from "../../components/BookProgress";
 import TrackPicker from "../../components/TrackPicker";
 import useLocalForageBlobUrl from "../../hooks/useLocalForageBlobUrl";
-import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
+import { getTotalDuration } from "../../services/book";
 
-const Player = () => {
+const Player = (props: { store: Store }) => {
     const router = useRouter();
     const id = router.query.id as string;
-    const book = useBook(id);
+    const book = props.store.books[id];
     const totalDuration = getTotalDuration(book);
     const coverUrl = useLocalForageBlobUrl(book && book.coverId);
 
@@ -54,4 +52,4 @@ const Player = () => {
     </div>
 };
 
-export default Player;
+export default collect(Player);
