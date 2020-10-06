@@ -6,7 +6,8 @@ export const supportedTrackTypes = [
     "mp4",
     "webm",
     "flac",
-    "m4a"
+    "m4a",
+    "m4b"
 ];
 
 export interface Track {
