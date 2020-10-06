@@ -38,7 +38,7 @@ const Player = (props: { store: Store }) => {
                 <Image src={coverUrl}></Image>
             </Box>
             <Box shadow="md">
-                {book && <TrackPicker book={book} currentTrack={currentTrack} onTrackChange={setCurrentTrack} />}
+                {book && <TrackPicker bookId={book.id} />}
                 <Box padding={1}>
                     {book && <BookProgress bookId={book.id} />}
                 </Box>
