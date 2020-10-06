@@ -38,7 +38,6 @@ const BookPlayer = (props: Props) => {
 
     console.log("Here!")
     return <audio
-        autoPlay
         ref={audioRef}
         src={url}
         onEnded={maybeNextTrack} />
