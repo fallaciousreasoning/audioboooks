@@ -46,9 +46,6 @@ const BookPlayer = (props: Props) => {
     }, [currentTrack, book.id, props.playing]);
 
     useEffect(() => {
-        if (book.progress === undefined)
-            return;
-
         const progressDuration = getTotalDuration(book) * book.progress;
         const currentDuration = getDurationToTrack(book, currentTrack) + audioRef.current.currentTime;
 
