@@ -7,6 +7,12 @@ export const maybeInitStore = () => {
         store.books = {};
         loadBooks().then(books => store.books = books);
     }
+
+    if (!store.settings) {
+        store.settings = {
+            playbackRate: 1.5
+        }
+    }
 }
 
 export const addBook = (book: Book) => {

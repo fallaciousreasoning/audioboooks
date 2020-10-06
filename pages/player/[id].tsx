@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from "react";
 import { collect, Store } from "react-recollect";
 import AppBar from "../../components/AppBar";
+import BookPlayer from "../../components/BookPlayer";
 import BookProgress from "../../components/BookProgress";
 import TrackPicker from "../../components/TrackPicker";
 import useLocalForageBlobUrl from "../../hooks/useLocalForageBlobUrl";
@@ -50,7 +51,7 @@ const Player = (props: { store: Store }) => {
                 </Flex>
             </Box>
         </Flex>
-        <audio src={audioUrl} autoPlay/>
+        {book && <BookPlayer bookId={book.id}/>}
     </div>
 };
 
