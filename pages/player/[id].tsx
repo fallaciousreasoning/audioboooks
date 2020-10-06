@@ -21,6 +21,7 @@ const Player = (props: { store: Store }) => {
 
     // TODO: Get progress from somewhere.
     const [currentTrack, setCurrentTrack] = useState(0);
+    const [playing, setPlaying] = useState(false);
     const currentPosition = book ? book.tracks.slice(0, currentTrack).reduce((prev, next) => prev + next.duration, 0) : 0;
     
     return <div>
@@ -47,12 +48,18 @@ const Player = (props: { store: Store }) => {
                 </Box>
                 <Flex alignItems="center" justifyContent="center" padding={3}>
                     <IconButton isRound aria-label="back" icon="arrow-left" />
-                    <IconButton variantColor="pink" isRound aria-label="play/pause" icon="chevron-right" size="lg" />
+                    <IconButton
+                        variantColor="pink"
+                        isRound
+                        aria-label="play/pause"
+                        icon={playing ? 'drag-handle' : 'chevron-right'}
+                        size="lg"
+                        onClick={() => setPlaying(!playing)}/>
                     <IconButton isRound aria-label="forward" icon="arrow-right" />
                 </Flex>
             </Box>
         </Flex>
-        {book && <BookPlayer bookId={book.id}/>}
+        {book && <BookPlayer bookId={book.id} playing={playing}/>}
     </div>
 };
 

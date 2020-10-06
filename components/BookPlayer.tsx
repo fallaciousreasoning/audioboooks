@@ -7,6 +7,7 @@ import { Track } from "../model/Track";
 interface Props {
     bookId: string;
     store: Store;
+    playing: boolean;
 }
 
 const useTrackUrl = (track: Track) => {
@@ -26,11 +27,21 @@ const BookPlayer = (props: Props) => {
     // Sync the playback rate.
     useEffect(() => {
         audioRef.current.playbackRate = props.store.settings.playbackRate;
-    }, [props.store.settings.playbackRate]);
+    }, [props.store.settings.playbackRate, url]);
+
+    // Sync the play/pause status.
+    useEffect(() => {
+        if (props.playing && audioRef.current.paused)
+            audioRef.current.play();
+        if (!props.playing && !audioRef.current.paused)
+            audioRef.current.pause();
+    }, [props.playing]);
 
     const maybeNextTrack = useCallback(() => {
         if (currentTrack >= tracks.length - 1)
             return;
+
+        audioRef.current.autoplay = true;
         setCurrentTrack(currentTrack + 1);
         setTrackPosition(0);
         console.log("Next!")
