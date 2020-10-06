@@ -16,5 +16,5 @@ export const loadBooks = async () => {
 }
 
 export const saveBooks = async (books: { [id: string]: Book }) => {
-    await localforage.setItem(KEY, books);
+    await localforage.setItem(KEY, JSON.parse(JSON.stringify(books)));
 }

@@ -15,6 +15,7 @@ const Player = (props: { store: Store }) => {
     const book = props.store.books[id];
     const totalDuration = getTotalDuration(book);
     const coverUrl = useLocalForageBlobUrl(book && book.coverId);
+    const audioUrl = useLocalForageBlobUrl(book && book.tracks[0].id);
 
     // TODO: Get progress from somewhere.
     const [currentTrack, setCurrentTrack] = useState(0);
@@ -49,6 +50,7 @@ const Player = (props: { store: Store }) => {
                 </Flex>
             </Box>
         </Flex>
+        <audio src={audioUrl} autoPlay/>
     </div>
 };
 

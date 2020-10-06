@@ -1,6 +1,6 @@
 import { store } from "react-recollect"
 import { Book } from "../model/Book";
-import { loadBooks } from "./book";
+import { loadBooks, saveBooks } from "./book";
 
 export const maybeInitStore = () => {
     if (!store.books) {
@@ -14,4 +14,6 @@ export const addBook = (book: Book) => {
         ...store.books,
         [book.id]: book
     };
+
+    saveBooks(store.books);
 }
