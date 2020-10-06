@@ -44,10 +44,8 @@ const BookPlayer = (props: Props) => {
         audioRef.current.autoplay = true;
         setCurrentTrack(currentTrack + 1);
         setTrackPosition(0);
-        console.log("Next!")
     }, [currentTrack])
 
-    console.log("Here!")
     return <audio
         ref={audioRef}
         src={url}
