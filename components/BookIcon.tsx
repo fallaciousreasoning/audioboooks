@@ -5,21 +5,23 @@ import { Book } from "../model/Book";
 import localforage from 'localforage';
 import NoTextWrap from "./NoTextWrap";
 import useLocalForageBlobUrl from "../hooks/useLocalForageBlobUrl";
+import { collect, Store } from "react-recollect";
 
 interface Props {
-    book: Book;
-    progress: number;
+    bookId: string;
+    store: Store;
 }
 
 const BookIcon = (props: Props) => {
-    const coverUrl = useLocalForageBlobUrl(props.book.coverId);
-    return <Link href={`/player/${props.book.id}`}>
+    const book = props.store.books[props.bookId];
+    const coverUrl = useLocalForageBlobUrl(book.coverId);
+    return <Link href={`/player/${book.id}`}>
         <Flex height="10em" minWidth="10em" maxWidth="10em" direction="column">
-            <NoTextWrap fontSize="xl">{props.book.title}</NoTextWrap>
+            <NoTextWrap fontSize="xl">{book.title}</NoTextWrap>
             <Image src={coverUrl} flexShrink={1} flexGrow={1} minHeight={0} minWidth={0} />
-            <Progress value={props.progress * 100} />
+            <Progress value={book.progress*100} />
         </Flex>
     </Link>
 }
 
-export default BookIcon;
+export default collect(BookIcon);

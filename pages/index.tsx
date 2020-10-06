@@ -19,7 +19,7 @@ const Home = ({ store }: { store: Store }) => {
     </AppBar>
     <Flex style={{ gap: '10px' }} padding={1} flexWrap="wrap" justifyContent="space-evenly">
       {booksArray.map(book => <Box key={book.id} shadow="md" marginTop={1}>
-        <BookIcon book={book} progress={book.title.length / 50} />
+        <BookIcon bookId={book.id} />
       </Box>)}
     </Flex>
     <AddBook />
