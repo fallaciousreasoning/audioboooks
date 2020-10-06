@@ -6,6 +6,7 @@ import { collect, Store } from "react-recollect";
 import AppBar from "../../components/AppBar";
 import BookPlayer from "../../components/BookPlayer";
 import BookProgress from "../../components/BookProgress";
+import PlaybackRateButton from "../../components/PlaybackRateButton";
 import TrackPicker from "../../components/TrackPicker";
 import useLocalForageBlobUrl from "../../hooks/useLocalForageBlobUrl";
 import { getTotalDuration } from "../../services/book";
@@ -33,7 +34,7 @@ const Player = (props: { store: Store }) => {
                         <Icon name="arrow-back" />
                     </Link>
                     <IconButton isRound aria-label="Sleep Timer" icon="time" />
-                    <IconButton isRound aria-label="Playback Speed" icon="repeat-clock" />
+                    <PlaybackRateButton/>
                 </Stack>
             </AppBar>
             <Box flexGrow={1} flexShrink={1} overflow="hidden">
