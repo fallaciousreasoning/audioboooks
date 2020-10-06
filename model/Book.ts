@@ -10,7 +10,7 @@ type Source = IndexedDBSource;
 
 export interface Book {
     id: string;
-    
+
     title: string;
     author?: string;
     coverId?: string;
@@ -19,4 +19,6 @@ export interface Book {
     tracks: Track[];
 
     source: Source;
+
+    progress: number;
 }

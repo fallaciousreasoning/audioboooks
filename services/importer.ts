@@ -121,7 +121,9 @@ export const importToIndexedDB = async (files: FileList): Promise<Book> => {
         },
         title: metaData.title,
         author: metaData.author,
-        tracks: tracks
+        tracks: tracks,
+
+        progress: 0
     };
 
     await addBook(book);
