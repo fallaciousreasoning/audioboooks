@@ -15,7 +15,7 @@ export const getTrackNumberFromProgress = (book: Book): number => {
     let elapsed = 0;
     let index = 0;
 
-    while ((elapsed + book.tracks[index].duration) / totalDuration < book.progress && index < book.tracks.length - 1) {
+    while ((elapsed + book.tracks[index].duration) / totalDuration <= book.progress && index < book.tracks.length - 1) {
         elapsed += book.tracks[index].duration;
         index += 1;
     }
@@ -23,9 +23,13 @@ export const getTrackNumberFromProgress = (book: Book): number => {
     return index;
 }
 
+export const getDurationToTrack = (book: Book, trackNumber: number) => {
+    return book.tracks.slice(0, trackNumber).reduce((prev, next) => prev + next.duration, 0);
+}
+
 export const getProgressForTrack = (book: Book, trackNumber: number) => {
     const totalDuration = getTotalDuration(book);
-    return book.tracks.slice(0, trackNumber).reduce((prev, next) => prev + next.duration, 0) / totalDuration;
+    return getDurationToTrack(book, trackNumber) / totalDuration;
 }
 
 export const loadBooks = async () => {

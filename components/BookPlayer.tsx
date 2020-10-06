@@ -3,7 +3,7 @@ import { collect, store, Store } from "react-recollect";
 import useLocalForageBlobUrl from "../hooks/useLocalForageBlobUrl";
 import { Book } from "../model/Book";
 import { Track } from "../model/Track";
-import { getTotalDuration } from "../services/book";
+import { getDurationToTrack, getProgressForTrack, getTotalDuration, getTrackNumberFromProgress } from "../services/book";
 
 interface Props {
     bookId: string;
@@ -24,7 +24,11 @@ const BookPlayer = (props: Props) => {
     const url = useTrackUrl(tracks[currentTrack]);
     const audioRef = useRef<HTMLAudioElement>();
 
+    // Update the books progress.
     useEffect(() => {
+        if (!props.playing)
+            return;
+
         const totalDuration = getTotalDuration(book);
         const priorChapterDuration = book.tracks.slice(0, currentTrack).reduce((prev, next) => prev + next.duration, 0);
 
@@ -39,7 +43,27 @@ const BookPlayer = (props: Props) => {
         return () => {
             clearTimeout(timeout);
         }
-    }, [currentTrack, book.id])
+    }, [currentTrack, book.id, props.playing]);
+
+    useEffect(() => {
+        if (book.progress === undefined)
+            return;
+
+        const progressDuration = getTotalDuration(book) * book.progress;
+        const currentDuration = getDurationToTrack(book, currentTrack) + audioRef.current.currentTime;
+
+        // If the two aren't out of sync, carry on.
+        if (Math.abs(progressDuration - currentDuration) <= 1)
+            return;
+
+        const newTrackNumber = getTrackNumberFromProgress(book);
+        const remainder = progressDuration - getDurationToTrack(book, newTrackNumber);
+        setCurrentTrack(newTrackNumber);
+
+        // TODO: Set this after canplay fires, as I'm pretty sure it has no effect until then.
+        audioRef.current.currentTime = remainder;
+        audioRef.current.autoplay = true;
+    }, [book.progress]);
 
     // Sync the playback rate.
     useEffect(() => {
